@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Mr.Su AI"
+version = "1.0.0"
+id = "artifacts/mrsu-ai"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+localPort = 25643
+name = "web"
+paths = ["/"]
+
+[services.development]
+run = "pnpm --filter @workspace/mrsu-ai run dev"
+
+[services.env]
+PORT = "25643"
+BASE_PATH = "/"
+
+[services.production]
+build = ["pnpm", "--filter", "@workspace/mrsu-ai", "run", "build"]
+publicDir = "artifacts/mrsu-ai/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"

@@ -1,0 +1,7 @@
+{
+  "name": "Mr.Su Ai",
+  "description": "An AI-powered digital marketing command center for strategy, content creation, sales, and team management.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
