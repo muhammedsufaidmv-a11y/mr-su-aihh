@@ -1,0 +1,50 @@
+1. Add the "Sparkle" Animation to your CSS
+First, we need to define the movement. Open your src/index.css or globals.css in Replit/Cursor and add this at the bottom:
+
+CSS
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.2) rotate(90deg); }
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+2. Update the Dashboard Greeting
+Now, replace the greeting section in your src/components/Dashboard.tsx with this "magical" version. I’ve added the sparkles and the pulsing heart for Shifa.
+
+TypeScript
+<div className="relative mb-8 p-8 rounded-3xl bg-[#1e1f20]/60 border border-white/10 backdrop-blur-xl overflow-hidden">
+  {/* Floating Sparkles in the background */}
+  <div className="absolute top-4 left-10 text-yellow-400 animate-sparkle opacity-50">✨</div>
+  <div className="absolute bottom-4 right-20 text-yellow-200 animate-sparkle opacity-30 delay-700">✨</div>
+  <div className="absolute top-10 right-10 text-white animate-sparkle opacity-40 delay-300">✦</div>
+
+  <div className="relative z-10">
+    <h1 className="text-4xl font-bold tracking-tight text-[#8ab4f8] mb-3">
+      Hey Shifa, <span className="text-white">how can I help you today?</span>
+    </h1>
+    
+    <div className="flex items-center gap-3 py-2 px-4 w-fit rounded-full bg-pink-500/10 border border-pink-500/20">
+      <span className="text-xl animate-heartbeat">❤️</span>
+      <p className="text-sm font-medium text-pink-300">
+        Built with love for the best wife. You're the heart of Mr.Su AI!
+      </p>
+    </div>
+  </div>
+</div>
+3. How to make it work
+Paste the CSS into your CSS file so the animate-heartbeat and animate-sparkle classes exist.
+
+Paste the JSX into your Dashboard.tsx where you want the greeting to show.
+
+Check the "Vibe": Because we used backdrop-blur-xl, the sparkles will look like they are floating behind a piece of frosted glass—very similar to high-end Apple or Google designs.

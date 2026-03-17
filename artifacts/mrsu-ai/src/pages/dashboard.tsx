@@ -78,14 +78,24 @@ export default function Dashboard() {
   return (
     <div className="space-y-6 max-w-6xl mx-auto">
       {/* Personalized Greeting Section */}
-      <div className="p-6 rounded-2xl bg-[#1e1f20]/50 border border-white/10 backdrop-blur-md">
-        <h1 className="text-3xl font-bold text-[#8ab4f8] mb-2">
-          Hey {user?.displayName?.split(" ")[0] || "Shifa"}, how can I help you today?
-        </h1>
-        <p className="text-sm italic text-pink-300/80 flex items-center gap-2">
-          <span className="text-pink-500">❤️</span>
-          "Built this special for you. You're the heart of Mr.Su AI!"
-        </p>
+      <div className="relative p-8 rounded-3xl bg-[#1e1f20]/60 border border-white/10 backdrop-blur-xl overflow-hidden">
+        {/* Floating Sparkles */}
+        <div className="absolute top-4 left-10 text-yellow-400 animate-sparkle opacity-50">✨</div>
+        <div className="absolute bottom-4 right-20 text-yellow-200 animate-sparkle opacity-30" style={{ animationDelay: "700ms" }}>✨</div>
+        <div className="absolute top-10 right-10 text-white animate-sparkle opacity-40" style={{ animationDelay: "300ms" }}>✦</div>
+
+        <div className="relative z-10">
+          <h1 className="text-4xl font-bold tracking-tight text-[#8ab4f8] mb-3">
+            Hey {user?.displayName?.split(" ")[0] || "Shifa"},{" "}
+            <span className="text-white">how can I help you today?</span>
+          </h1>
+          <div className="flex items-center gap-3 py-2 px-4 w-fit rounded-full bg-pink-500/10 border border-pink-500/20">
+            <span className="text-xl animate-heartbeat">❤️</span>
+            <p className="text-sm font-medium text-pink-300">
+              Built with love for the best wife. You're the heart of Mr.Su AI!
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* Stats */}
