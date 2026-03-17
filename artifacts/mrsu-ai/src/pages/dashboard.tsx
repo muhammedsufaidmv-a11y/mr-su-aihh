@@ -157,82 +157,77 @@ export default function Dashboard() {
            SHIFA'S ROMANTIC VIEW
         ══════════════════════════════════════ */
         <>
-          {/* Greeting Header */}
-          <div className="relative p-8 rounded-3xl bg-[#1e1f20]/60 border border-white/10 backdrop-blur-xl overflow-hidden shadow-2xl">
-            <div className="absolute top-4 left-10 text-yellow-400 animate-pulse text-xl">✨</div>
-            <div className="absolute bottom-4 right-48 text-blue-300 animate-bounce opacity-30" style={{ animationDelay: "700ms" }}>✦</div>
-            <div className="absolute top-1/2 right-48 text-white animate-pulse opacity-40" style={{ animationDelay: "300ms" }}>✨</div>
-
-            <div className="relative z-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
-              <div className="space-y-3">
-                <h1 className="text-4xl font-bold tracking-tight text-[#8ab4f8]">
-                  Hey {user?.displayName?.split(" ")[0] || "Shifa"},{" "}
-                  <span className="text-white">how can I help you?</span>
-                </h1>
-                <div className="flex items-center gap-3 py-2 px-4 w-fit rounded-full bg-pink-500/10 border border-pink-500/20">
-                  <span className="text-xl animate-heartbeat">❤️</span>
-                  <p className="text-sm font-medium text-pink-300 tracking-wide">
-                    Built with love for the best wife. You're the heart of Mr.Su AI!
-                  </p>
-                </div>
+          {/* Studio-style Header */}
+          <div className="flex justify-between items-end mb-10">
+            <div>
+              <h1 className="text-4xl font-medium text-white tracking-tight">
+                Hey {user?.displayName?.split(" ")[0] || "Shifa"},{" "}
+                <span className="text-white/40">how can I help today?</span>
+              </h1>
+              <div className="flex items-center gap-2 mt-3 text-pink-400 text-sm font-medium">
+                <span className="animate-heartbeat">❤️</span> Built with love, just for you.
               </div>
-              <div className="flex flex-col items-end bg-black/20 p-4 rounded-2xl border border-white/5 shrink-0">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#8ab4f8]">Kerala, India</span>
-                  <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
-                </div>
-                <span className="text-3xl font-mono font-bold text-white tabular-nums drop-shadow-md">{keralaTime}</span>
-                <div className="text-[11px] text-white/60 mt-1 font-medium flex items-center gap-1">
-                  <span>32°C</span> • <span>⛈ Scattered Thunderstorms</span>
-                </div>
-              </div>
+            </div>
+            <div className="text-right border-l border-[#333] pl-6">
+              <p className="text-[10px] font-bold text-[#8ab4f8] uppercase tracking-[0.2em] mb-1">Kerala Time</p>
+              <p className="text-3xl font-light text-white tabular-nums">{keralaTime}</p>
+              <p className="text-xs text-white/40 mt-1">32°C • ⛈ Scattered Thunderstorms</p>
             </div>
           </div>
 
-          {/* Bento Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Left: Photo Frame */}
-            <div className="md:col-span-1 h-[400px] relative group rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl">
+          {/* Bento Grid — 12 column Studio layout */}
+          <div className="grid grid-cols-12 gap-6">
+            {/* Photo — 5 columns */}
+            <div className="col-span-12 md:col-span-5 h-[450px] rounded-[24px] overflow-hidden border border-white/10 bg-[#1e1f20] shadow-2xl relative group">
               <img
                 src="https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?q=80&w=1000&auto=format&fit=crop"
                 alt="Us"
-                className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700"
+                className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 grayscale-[20%] group-hover:grayscale-0"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-              <div className="absolute bottom-6 left-6 bg-white px-4 py-1 rounded shadow-xl -rotate-2 group-hover:rotate-0 transition-transform">
-                <p className="text-pink-600 font-bold text-xs uppercase tracking-tighter">My World Forever ❤️</p>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#131314] via-transparent to-transparent"></div>
+              <div className="absolute bottom-6 left-6">
+                <span className="bg-[#8ab4f8] text-[#131314] px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter">My World ❤️</span>
               </div>
-              <div className="absolute top-3 right-3 text-yellow-400 animate-pulse">✨</div>
             </div>
 
-            {/* Right: Love Stats + Note + Quote */}
-            <div className="md:col-span-2 space-y-5">
-              <div className="grid grid-cols-2 gap-5">
-                <div className="p-6 rounded-3xl bg-blue-500/5 border border-blue-500/20 text-center">
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-[#8ab4f8] mb-2">Since Engagement</p>
-                  <p className="text-4xl font-bold text-white">
-                    {daysSinceEngagement} <span className="text-sm font-normal opacity-40">Days</span>
-                  </p>
-                  <p className="text-[9px] text-white/30 mt-2">Oct 12, 2024</p>
+            {/* Right side — 7 columns */}
+            <div className="col-span-12 md:col-span-7 flex flex-col gap-6">
+              {/* Love counters */}
+              <div className="grid grid-cols-2 gap-6 flex-1">
+                <div className="bg-[#1e1f20] border border-[#333] rounded-[24px] p-6 flex flex-col justify-center items-center hover:border-pink-500/30 transition-colors">
+                  <span className="text-pink-400 text-2xl mb-2 animate-pulse">❤️</span>
+                  <p className="text-[10px] text-white/40 uppercase tracking-widest">Since Marriage</p>
+                  <p className="text-4xl font-light text-white mt-2">{daysSinceMarriage} <span className="text-sm opacity-40">Days</span></p>
+                  <p className="text-[9px] text-white/20 mt-1">July 20, 2025</p>
                 </div>
-                <div className="p-6 rounded-3xl bg-pink-500/5 border border-pink-500/20 text-center">
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-pink-300 mb-2">Since Marriage</p>
-                  <p className="text-4xl font-bold text-white">
-                    {daysSinceMarriage} <span className="text-sm font-normal opacity-40">Days</span>
-                  </p>
-                  <p className="text-[9px] text-white/30 mt-2">July 20, 2025</p>
+                <div className="bg-[#1e1f20] border border-[#333] rounded-[24px] p-6 flex flex-col justify-center items-center hover:border-[#8ab4f8]/30 transition-colors">
+                  <span className="text-[#8ab4f8] text-2xl mb-2">💍</span>
+                  <p className="text-[10px] text-white/40 uppercase tracking-widest">Since Engagement</p>
+                  <p className="text-4xl font-light text-white mt-2">{daysSinceEngagement} <span className="text-sm opacity-40">Days</span></p>
+                  <p className="text-[9px] text-white/20 mt-1">Oct 12, 2024</p>
                 </div>
               </div>
 
-              <button
-                onClick={() => setLoveNoteOpen(true)}
-                className="w-full py-6 rounded-3xl bg-gradient-to-r from-pink-500/20 to-purple-500/20 border border-pink-500/30 text-pink-300 font-bold hover:from-pink-500/30 hover:to-purple-500/30 transition-all flex items-center justify-center gap-3 shadow-lg active:scale-95"
-              >
-                <span className="text-2xl">💌</span> Open My Daily Note
-              </button>
+              {/* Prompt-bar style note button */}
+              <div className="relative group">
+                <div className="absolute -inset-1 bg-gradient-to-r from-[#8ab4f8] to-purple-500 rounded-[24px] blur opacity-20 group-hover:opacity-40 transition duration-700"></div>
+                <button
+                  onClick={() => setLoveNoteOpen(true)}
+                  className="relative w-full bg-[#1e1f20] border border-[#333] rounded-[24px] p-6 text-left hover:bg-[#28292a] transition-all active:scale-[0.99]"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-full bg-[#3c4043] flex items-center justify-center text-xl shrink-0">✉️</div>
+                    <div>
+                      <p className="text-white font-medium">Click to open your daily note...</p>
+                      <p className="text-white/40 text-xs mt-0.5">Only for Shifa's eyes ❤️</p>
+                    </div>
+                  </div>
+                </button>
+              </div>
 
-              <div className="p-8 rounded-3xl bg-white/5 border border-white/5 flex items-center justify-center h-[120px]">
-                <p className="italic text-white/40 text-center leading-relaxed px-4">
+              {/* Quote */}
+              <div className="bg-[#1e1f20] border border-[#333] rounded-[24px] p-6 flex items-center justify-center">
+                <p className="italic text-white/30 text-center leading-relaxed text-sm">
                   "Distance is just a test to see how far love can travel. I'm always with you, Shifa."
                 </p>
               </div>

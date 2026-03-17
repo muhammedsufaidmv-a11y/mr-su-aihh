@@ -1,0 +1,128 @@
+1. The Global CSS (The Foundation)
+Update your src/index.css (or globals.css) to ensure the background and fonts match perfectly.
+
+CSS
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-main: #131314;      /* Google Dark Charcoal */
+  --bg-sidebar: #1e1f20;   /* Slightly lighter grey */
+  --border-color: #333333; /* Clean separator lines */
+  --google-blue: #8ab4f8;  /* Iconic Blue Accent */
+}
+
+body {
+  background-color: var(--bg-main);
+  color: #e3e3e3;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+}
+
+/* Add a subtle scrollbar like Chrome/AI Studio */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-main); }
+::-webkit-scrollbar-thumb { 
+  background: #3c4043; 
+  border-radius: 10px; 
+}
+2. The Updated "Studio" Dashboard Layout
+Replace the main structure in your Dashboard.tsx to use these specific Google-style classes. I have adjusted the Bento Boxes to be "Glass" panels.
+
+TypeScript
+// Inside your Dashboard return statement
+<div className="flex h-screen overflow-hidden bg-[#131314]">
+  
+  {/* --- SIDEBAR: CLEAN & MINIMAL --- */}
+  <aside className="w-[260px] bg-[#1e1f20] border-r border-[#333] flex flex-col">
+    <div className="p-6">
+      <div className="flex items-center gap-2 mb-8">
+        <div className="w-8 h-8 bg-[#8ab4f8] rounded-lg shadow-[0_0_15px_rgba(138,180,248,0.4)]"></div>
+        <span className="font-semibold text-xl tracking-tight text-white">Mr.Su AI</span>
+      </div>
+      
+      <nav className="space-y-1">
+        <button className="w-full flex items-center gap-3 px-4 py-2.5 bg-[#3c4043] text-white rounded-lg text-sm font-medium">
+          <span>🏠</span> Dashboard
+        </button>
+        <button className="w-full flex items-center gap-3 px-4 py-2.5 text-white/60 hover:bg-[#2d2e30] rounded-lg text-sm transition-all">
+          <span>📋</span> Lead Manager
+        </button>
+      </nav>
+    </div>
+  </aside>
+
+  {/* --- MAIN AREA: THE 'CANVAS' --- */}
+  <main className="flex-1 overflow-y-auto px-12 py-10 bg-[#131314]">
+    
+    {/* Header Section */}
+    <div className="max-w-6xl mx-auto">
+      <div className="flex justify-between items-end mb-12">
+        <h1 className="text-4xl font-medium text-white tracking-tight">
+          Hey Shifa, <span className="text-white/40">how can I help today?</span>
+        </h1>
+        {/* Kerala Clock - Clean & Small */}
+        <div className="text-right border-l border-[#333] pl-6">
+          <p className="text-[10px] font-bold text-[#8ab4f8] uppercase tracking-[0.2em] mb-1">Kerala Time</p>
+          <p className="text-3xl font-light text-white">{keralaTime}</p>
+        </div>
+      </div>
+
+      {/* BENTO GRID: HOLOGRAPHIC GLASS TILES */}
+      <div className="grid grid-cols-12 gap-6">
+        
+        {/* Photo Card - 5 columns */}
+        <div className="col-span-12 md:col-span-5 h-[450px] rounded-[24px] overflow-hidden border border-white/10 bg-[#1e1f20] shadow-2xl relative group">
+          <img src="/us.jpg" className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#131314] via-transparent to-transparent"></div>
+          <div className="absolute bottom-6 left-6">
+            <span className="bg-[#8ab4f8] text-[#131314] px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter">My World</span>
+          </div>
+        </div>
+
+        {/* Info & Notes - 7 columns */}
+        <div className="col-span-12 md:col-span-7 flex flex-col gap-6">
+          <div className="grid grid-cols-2 gap-6 flex-1">
+            {/* Wedding Card */}
+            <div className="bg-[#1e1f20] border border-[#333] rounded-[24px] p-6 flex flex-col justify-center items-center hover:border-[#8ab4f8]/30 transition-colors">
+              <span className="text-pink-400 text-2xl mb-2 animate-pulse">❤️</span>
+              <p className="text-[10px] text-white/40 uppercase tracking-widest">Since Marriage</p>
+              <p className="text-4xl font-light text-white mt-2">{daysSinceMarriage} Days</p>
+            </div>
+            {/* Engagement Card */}
+            <div className="bg-[#1e1f20] border border-[#333] rounded-[24px] p-6 flex flex-col justify-center items-center">
+              <span className="text-[#8ab4f8] text-2xl mb-2">💍</span>
+              <p className="text-[10px] text-white/40 uppercase tracking-widest">Since Engagement</p>
+              <p className="text-4xl font-light text-white mt-2">{daysSinceEngagement} Days</p>
+            </div>
+          </div>
+          
+          {/* THE PROMPT BAR: EXACTLY LIKE AI STUDIO */}
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-[#8ab4f8] to-purple-500 rounded-[24px] blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+            <button 
+               onClick={handleOpenNote}
+               className="relative w-full bg-[#1e1f20] border border-[#333] rounded-[24px] p-6 text-left hover:bg-[#28292a] transition-all"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-[#3c4043] flex items-center justify-center text-xl">✉️</div>
+                <div>
+                  <p className="text-white font-medium">Click to open your daily note...</p>
+                  <p className="text-white/40 text-xs">Only for Shifa's eyes</p>
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+</div>
+3. Key Improvements for "Graphics":
+Shadows: We added shadow-[0_0_15px_rgba(138,180,248,0.4)] to the logo to give it that AI Studio glow.
+
+Borders: Instead of heavy white borders, we use #333 on #1e1f20. This creates the "Professional" look.
+
+Typography: Using font-light for the numbers makes it look modern and expensive, just like the Google interface.
+
+The Prompt Box: The love note button now looks like the Google AI Studio Prompt Bar, with a subtle gradient glow behind it.
