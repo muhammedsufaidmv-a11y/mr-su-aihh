@@ -77,9 +77,15 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-6 max-w-6xl mx-auto">
-      <div>
-        <h1 className="text-2xl font-bold text-white">Welcome back, {displayName}!</h1>
-        <p className="text-white/50 mt-1">Here's an overview of your marketing command center.</p>
+      {/* Personalized Greeting Section */}
+      <div className="p-6 rounded-2xl bg-[#1e1f20]/50 border border-white/10 backdrop-blur-md">
+        <h1 className="text-3xl font-bold text-[#8ab4f8] mb-2">
+          Hey {user?.displayName?.split(" ")[0] || "Shifa"}, how can I help you today?
+        </h1>
+        <p className="text-sm italic text-pink-300/80 flex items-center gap-2">
+          <span className="text-pink-500">❤️</span>
+          "Built this special for you. You're the heart of Mr.Su AI!"
+        </p>
       </div>
 
       {/* Stats */}
