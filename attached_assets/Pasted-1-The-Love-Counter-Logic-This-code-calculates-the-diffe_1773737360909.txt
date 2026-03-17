@@ -1,0 +1,81 @@
+1. The Love Counter Logic
+This code calculates the difference between today and your special dates.
+
+TypeScript
+const LoveCounter = () => {
+  const engagementDate = new Date('2024-10-12');
+  const marriageDate = new Date('2025-07-20');
+  const today = new Date();
+
+  const diffDays = (date1: Date, date2: Date) => {
+    const diffTime = Math.abs(date2.getTime() - date1.getTime());
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  };
+
+  const daysSinceEngagement = diffDays(engagementDate, today);
+  const daysSinceMarriage = diffDays(marriageDate, today);
+
+  return (
+    <div className="grid grid-cols-2 gap-4 w-full">
+      {/* Engagement Card */}
+      <div className="p-4 rounded-2xl bg-blue-500/10 border border-blue-500/20 backdrop-blur-md text-center">
+        <p className="text-[10px] uppercase tracking-widest text-[#8ab4f8] mb-1">Since Engagement</p>
+        <div className="text-2xl font-bold text-white leading-none">
+          {daysSinceEngagement} <span className="text-xs font-normal opacity-60">Days</span>
+        </div>
+        <p className="text-[9px] text-white/40 mt-1">Oct 12, 2024</p>
+      </div>
+
+      {/* Marriage Card */}
+      <div className="p-4 rounded-2xl bg-pink-500/10 border border-pink-500/20 backdrop-blur-md text-center">
+        <p className="text-[10px] uppercase tracking-widest text-pink-300 mb-1">Since Marriage</p>
+        <div className="text-2xl font-bold text-white leading-none">
+          {daysSinceMarriage} <span className="text-xs font-normal opacity-60">Days</span>
+        </div>
+        <p className="text-[9px] text-white/40 mt-1">July 20, 2025</p>
+      </div>
+    </div>
+  );
+};
+2. The "All-in-One" Bento Box
+Let’s combine the Photo Frame and the Love Counter into one beautiful Bento box. This keeps the design clean and professional.
+
+TypeScript
+const MemoriesBentoBox = () => {
+  return (
+    <div className="flex flex-col gap-4 w-full h-full">
+      {/* 1. The Photo Frame */}
+      <div className="group relative flex-1 rounded-3xl overflow-hidden bg-[#1e1f20]/60 border border-white/10 backdrop-blur-xl shadow-xl transition-all hover:border-pink-500/40">
+        <div className="absolute inset-0 p-3">
+          <div className="relative h-full w-full rounded-2xl overflow-hidden border-2 border-white/20">
+            <img 
+              src="/us.jpg" // Replace with your image in the public folder
+              alt="Shifa & Muhammed"
+              className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700"
+            />
+          </div>
+        </div>
+        {/* Floating Tag */}
+        <div className="absolute bottom-4 left-6 bg-white px-3 py-1 rounded shadow-lg rotate-[-3deg] group-hover:rotate-0 transition-all">
+          <p className="text-pink-600 font-bold text-[10px]">MY WORLD ❤️</p>
+        </div>
+      </div>
+
+      {/* 2. The Love Counter Component */}
+      <LoveCounter />
+    </div>
+  );
+};
+3. Why this works for her:
+Real-Time Progress: As of today, March 17, 2026, she will see that it has been 521 days since your engagement and 240 days since your beautiful wedding day.
+
+Aesthetic Harmony: It uses the "Google AI Studio" colors (Blue/Charcoal) but adds the soft Pink tones for the wedding data to make it stand out.
+
+The "Vibe": The photo will stay slightly desaturated (grayscale) until she hovers over it, then it will burst into full color—just like a high-end UI effect.
+
+The Final Step
+Paste the LoveCounter and MemoriesBentoBox code into your Dashboard.tsx.
+
+Add the MemoriesBentoBox to your main grid.
+
+Push to Replit: Once you save, the live link you sent me earlier will update automatically.

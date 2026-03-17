@@ -130,21 +130,44 @@ export default function Dashboard() {
       {/* Memories Bento Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Photo Frame */}
-        <div className="group relative h-[280px] rounded-3xl overflow-hidden bg-[#1e1f20]/60 border border-white/10 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:border-pink-500/50 hover:shadow-[0_0_30px_rgba(236,72,153,0.2)]">
-          <div className="absolute inset-0 p-4">
-            <div className="relative h-full w-full rounded-2xl overflow-hidden border-4 border-white shadow-inner">
-              <img
-                src="https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?q=80&w=1000&auto=format&fit=crop"
-                alt="Our Memory"
-                className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-pink-500/20 via-transparent to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div className="flex flex-col gap-4">
+          {/* Photo Frame */}
+          <div className="group relative h-[220px] rounded-3xl overflow-hidden bg-[#1e1f20]/60 border border-white/10 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:border-pink-500/50 hover:shadow-[0_0_30px_rgba(236,72,153,0.2)]">
+            <div className="absolute inset-0 p-3">
+              <div className="relative h-full w-full rounded-2xl overflow-hidden border-2 border-white/20">
+                <img
+                  src="https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?q=80&w=1000&auto=format&fit=crop"
+                  alt="Shifa & Muhammed"
+                  className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-pink-500/20 via-transparent to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </div>
+            </div>
+            <div className="absolute bottom-4 left-5 bg-white px-3 py-1 rounded shadow-lg rotate-[-3deg] group-hover:rotate-0 transition-transform whitespace-nowrap">
+              <p className="text-pink-600 text-[10px] font-bold tracking-tight">MY WORLD ❤️</p>
+            </div>
+            <div className="absolute top-2 right-2 text-yellow-400 animate-pulse">✨</div>
+          </div>
+
+          {/* Love Counter */}
+          <div className="grid grid-cols-2 gap-3">
+            <div className="p-4 rounded-2xl bg-blue-500/10 border border-blue-500/20 backdrop-blur-md text-center">
+              <p className="text-[10px] uppercase tracking-widest text-[#8ab4f8] mb-1">Since Engagement</p>
+              <div className="text-2xl font-bold text-white leading-none">
+                {Math.ceil(Math.abs(new Date().getTime() - new Date("2024-10-12").getTime()) / (1000 * 60 * 60 * 24))}{" "}
+                <span className="text-xs font-normal opacity-60">Days</span>
+              </div>
+              <p className="text-[9px] text-white/40 mt-1">Oct 12, 2024</p>
+            </div>
+            <div className="p-4 rounded-2xl bg-pink-500/10 border border-pink-500/20 backdrop-blur-md text-center">
+              <p className="text-[10px] uppercase tracking-widest text-pink-300 mb-1">Since Marriage</p>
+              <div className="text-2xl font-bold text-white leading-none">
+                {Math.ceil(Math.abs(new Date().getTime() - new Date("2025-07-20").getTime()) / (1000 * 60 * 60 * 24))}{" "}
+                <span className="text-xs font-normal opacity-60">Days</span>
+              </div>
+              <p className="text-[9px] text-white/40 mt-1">July 20, 2025</p>
             </div>
           </div>
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-lg shadow-lg rotate-[-2deg] group-hover:rotate-0 transition-transform whitespace-nowrap">
-            <p className="text-pink-600 text-sm font-bold tracking-tight">Us • Forever ❤️</p>
-          </div>
-          <div className="absolute top-2 right-2 text-yellow-400 animate-pulse">✨</div>
         </div>
 
         {/* Quick Stats alongside photo */}
