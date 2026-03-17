@@ -191,72 +191,48 @@ export default function Dashboard() {
 
           {/* Bento Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Left: Photo + Counter + Note */}
-            <div className="flex flex-col gap-4">
-              <div className="group relative h-[220px] rounded-3xl overflow-hidden bg-[#1e1f20]/60 border border-white/10 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:border-pink-500/50 hover:shadow-[0_0_30px_rgba(236,72,153,0.2)]">
-                <div className="absolute inset-0 p-3">
-                  <div className="relative h-full w-full rounded-2xl overflow-hidden border-2 border-white/20">
-                    <img
-                      src="https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?q=80&w=1000&auto=format&fit=crop"
-                      alt="Shifa & Muhammed"
-                      className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-tr from-pink-500/20 via-transparent to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  </div>
-                </div>
-                <div className="absolute bottom-4 left-5 bg-white px-3 py-1 rounded shadow-lg rotate-[-3deg] group-hover:rotate-0 transition-transform whitespace-nowrap">
-                  <p className="text-pink-600 text-[10px] font-bold tracking-tight">MY WORLD ❤️</p>
-                </div>
-                <div className="absolute top-2 right-2 text-yellow-400 animate-pulse">✨</div>
+            {/* Left: Photo Frame */}
+            <div className="md:col-span-1 h-[400px] relative group rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl">
+              <img
+                src="https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?q=80&w=1000&auto=format&fit=crop"
+                alt="Us"
+                className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+              <div className="absolute bottom-6 left-6 bg-white px-4 py-1 rounded shadow-xl -rotate-2 group-hover:rotate-0 transition-transform">
+                <p className="text-pink-600 font-bold text-xs uppercase tracking-tighter">My World Forever ❤️</p>
               </div>
+              <div className="absolute top-3 right-3 text-yellow-400 animate-pulse">✨</div>
+            </div>
 
-              <div className="grid grid-cols-2 gap-3">
-                <div className="p-4 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-center">
-                  <p className="text-[10px] uppercase tracking-widest text-[#8ab4f8] mb-1">Since Engagement</p>
-                  <div className="text-2xl font-bold text-white leading-none">
-                    {daysSinceEngagement} <span className="text-xs font-normal opacity-60">Days</span>
-                  </div>
-                  <p className="text-[9px] text-white/40 mt-1">Oct 12, 2024</p>
+            {/* Right: Love Stats + Note + Quote */}
+            <div className="md:col-span-2 space-y-5">
+              <div className="grid grid-cols-2 gap-5">
+                <div className="p-6 rounded-3xl bg-blue-500/5 border border-blue-500/20 text-center">
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-[#8ab4f8] mb-2">Since Engagement</p>
+                  <p className="text-4xl font-bold text-white">
+                    {daysSinceEngagement} <span className="text-sm font-normal opacity-40">Days</span>
+                  </p>
+                  <p className="text-[9px] text-white/30 mt-2">Oct 12, 2024</p>
                 </div>
-                <div className="p-4 rounded-2xl bg-pink-500/10 border border-pink-500/20 text-center">
-                  <p className="text-[10px] uppercase tracking-widest text-pink-300 mb-1">Since Marriage</p>
-                  <div className="text-2xl font-bold text-white leading-none">
-                    {daysSinceMarriage} <span className="text-xs font-normal opacity-60">Days</span>
-                  </div>
-                  <p className="text-[9px] text-white/40 mt-1">July 20, 2025</p>
+                <div className="p-6 rounded-3xl bg-pink-500/5 border border-pink-500/20 text-center">
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-pink-300 mb-2">Since Marriage</p>
+                  <p className="text-4xl font-bold text-white">
+                    {daysSinceMarriage} <span className="text-sm font-normal opacity-40">Days</span>
+                  </p>
+                  <p className="text-[9px] text-white/30 mt-2">July 20, 2025</p>
                 </div>
               </div>
 
               <button
                 onClick={() => setLoveNoteOpen(true)}
-                className="w-full py-4 rounded-2xl bg-gradient-to-r from-pink-500/20 to-purple-500/20 border border-pink-500/30 text-pink-300 font-bold hover:from-pink-500/40 hover:to-purple-500/40 transition-all shadow-lg active:scale-95 flex items-center justify-center gap-2"
+                className="w-full py-6 rounded-3xl bg-gradient-to-r from-pink-500/20 to-purple-500/20 border border-pink-500/30 text-pink-300 font-bold hover:from-pink-500/30 hover:to-purple-500/30 transition-all flex items-center justify-center gap-3 shadow-lg active:scale-95"
               >
-                <span>💌</span> Open My Daily Note
+                <span className="text-2xl">💌</span> Open My Daily Note
               </button>
-            </div>
 
-            {/* Right: Stats + Quote */}
-            <div className="md:col-span-2 flex flex-col gap-4">
-              <div className="grid grid-cols-2 gap-4">
-                {statCards.map(({ label, value, icon: Icon, color, bg, href }) => (
-                  <Link key={label} href={href}>
-                    <a className="block">
-                      <Card className="bg-slate-800/50 border-white/10 hover:border-white/20 transition-colors cursor-pointer">
-                        <CardContent className="p-4">
-                          <div className={`${bg} p-2 rounded-lg w-fit mb-3`}>
-                            <Icon className={`h-5 w-5 ${color}`} />
-                          </div>
-                          <div className="text-2xl font-bold text-white">{loading ? "—" : value}</div>
-                          <div className="text-white/50 text-sm mt-1">{label}</div>
-                        </CardContent>
-                      </Card>
-                    </a>
-                  </Link>
-                ))}
-              </div>
-
-              <div className="flex-1 p-8 rounded-3xl bg-white/5 border border-white/5 flex items-center justify-center">
-                <p className="italic text-white/40 text-center leading-relaxed">
+              <div className="p-8 rounded-3xl bg-white/5 border border-white/5 flex items-center justify-center h-[120px]">
+                <p className="italic text-white/40 text-center leading-relaxed px-4">
                   "Distance is just a test to see how far love can travel. I'm always with you, Shifa."
                 </p>
               </div>
