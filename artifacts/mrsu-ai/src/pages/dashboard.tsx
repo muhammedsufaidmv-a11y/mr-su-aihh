@@ -72,8 +72,6 @@ export default function Dashboard() {
     fetchData();
   }, [user]);
 
-  const displayName = user?.displayName?.split(" ")[0] || "there";
-
   const statCards = [
     { label: "Total Leads", value: stats.leads, icon: Users, color: "text-blue-400", bg: "bg-blue-500/10", href: "/leads" },
     { label: "Content Items", value: stats.content, icon: FileText, color: "text-green-400", bg: "bg-green-500/10", href: "/content" },
@@ -129,23 +127,44 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Stats */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        {statCards.map(({ label, value, icon: Icon, color, bg, href }) => (
-          <Link key={label} href={href}>
-            <a className="block">
-              <Card className="bg-slate-800/50 border-white/10 hover:border-white/20 transition-colors cursor-pointer">
-                <CardContent className="p-4">
-                  <div className={`${bg} p-2 rounded-lg w-fit mb-3`}>
-                    <Icon className={`h-5 w-5 ${color}`} />
-                  </div>
-                  <div className="text-2xl font-bold text-white">{loading ? "—" : value}</div>
-                  <div className="text-white/50 text-sm mt-1">{label}</div>
-                </CardContent>
-              </Card>
-            </a>
-          </Link>
-        ))}
+      {/* Memories Bento Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Photo Frame */}
+        <div className="group relative h-[280px] rounded-3xl overflow-hidden bg-[#1e1f20]/60 border border-white/10 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:border-pink-500/50 hover:shadow-[0_0_30px_rgba(236,72,153,0.2)]">
+          <div className="absolute inset-0 p-4">
+            <div className="relative h-full w-full rounded-2xl overflow-hidden border-4 border-white shadow-inner">
+              <img
+                src="https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?q=80&w=1000&auto=format&fit=crop"
+                alt="Our Memory"
+                className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-pink-500/20 via-transparent to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            </div>
+          </div>
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-lg shadow-lg rotate-[-2deg] group-hover:rotate-0 transition-transform whitespace-nowrap">
+            <p className="text-pink-600 text-sm font-bold tracking-tight">Us • Forever ❤️</p>
+          </div>
+          <div className="absolute top-2 right-2 text-yellow-400 animate-pulse">✨</div>
+        </div>
+
+        {/* Quick Stats alongside photo */}
+        <div className="md:col-span-2 grid grid-cols-2 gap-4 content-start">
+          {statCards.map(({ label, value, icon: Icon, color, bg, href }) => (
+            <Link key={label} href={href}>
+              <a className="block">
+                <Card className="bg-slate-800/50 border-white/10 hover:border-white/20 transition-colors cursor-pointer h-full">
+                  <CardContent className="p-4">
+                    <div className={`${bg} p-2 rounded-lg w-fit mb-3`}>
+                      <Icon className={`h-5 w-5 ${color}`} />
+                    </div>
+                    <div className="text-2xl font-bold text-white">{loading ? "—" : value}</div>
+                    <div className="text-white/50 text-sm mt-1">{label}</div>
+                  </CardContent>
+                </Card>
+              </a>
+            </Link>
+          ))}
+        </div>
       </div>
 
       <div className="grid lg:grid-cols-3 gap-6">
