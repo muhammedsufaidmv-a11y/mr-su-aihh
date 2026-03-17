@@ -1,0 +1,181 @@
+Tuesday • Kerala, India 
+
+ Temperature 
+ Precipitation 
+ Wind 
+
+32
+ °C 
+|
+ °F 
+Light Thunderstorm Rain
+
+ High: 34°  Low: 23°  Precip: 45% 
+
+Tue
+
+
+ 45% 
+
+23° / 34°
+
+Wed
+
+
+ 55% 
+
+22° / 33°
+
+Thu
+
+
+ 60% 
+
+22° / 33°
+
+Fri
+
+
+ 15% 
+
+22° / 34°
+
+Sat
+
+
+ 35% 
+
+23° / 34°
+
+Sun
+
+
+ 15% 
+
+23° / 34°
+
+Mon
+
+
+ 15% 
+
+23° / 34°
+
+Tue
+
+
+ 15% 
+
+23° / 34°
+
+Wed
+
+
+ 15% 
+
+24° / 35°
+
+Thu
+
+
+ 35% 
+
+24° / 36°
+
+Fri
+
+
+ 45% 
+
+24° / 34°
+
+Google Weather
+This is the "All-in-One" code for your dashboard header. It combines the Personalized Greeting, the Love Message, the Pulsing Heart, the Floating Sparkles, and the Live Kerala Weather Clock.
+
+The Complete Header Code
+Replace your current header section in src/components/Dashboard.tsx with this block:
+
+TypeScript
+import React, { useState, useEffect } from 'react';
+
+const CombinedHeader = () => {
+  const [time, setTime] = useState(new Date());
+
+  // Update clock every second
+  useEffect(() => {
+    const timer = setInterval(() => setTime(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const keralaTime = time.toLocaleTimeString('en-IN', {
+    timeZone: 'Asia/Kolkata',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true
+  });
+
+  return (
+    <div className="w-full space-y-6">
+      {/* 1. Magical Greeting & Love Message Card */}
+      <div className="relative p-8 rounded-3xl bg-[#1e1f20]/60 border border-white/10 backdrop-blur-xl overflow-hidden shadow-2xl">
+        {/* Animated Background Sparkles */}
+        <div className="absolute top-4 left-10 text-yellow-400 animate-pulse text-xl">✨</div>
+        <div className="absolute bottom-4 right-20 text-blue-300 animate-bounce opacity-30 delay-700">✦</div>
+        <div className="absolute top-1/2 right-10 text-white animate-pulse opacity-40">✨</div>
+
+        <div className="flex justify-between items-center relative z-10">
+          {/* Left Side: Greeting */}
+          <div className="space-y-3">
+            <h1 className="text-4xl font-bold tracking-tight text-[#8ab4f8]">
+              Hey Shifa, <span className="text-white">how can I help you?</span>
+            </h1>
+            
+            <div className="flex items-center gap-3 py-2 px-4 rounded-full bg-pink-500/10 border border-pink-500/20 w-fit">
+              <span className="text-xl animate-[heartbeat_1.5s_ease-in-out_infinite]">❤️</span>
+              <p className="text-sm font-medium text-pink-300 tracking-wide">
+                Built with love for the best wife. You're the heart of Mr.Su AI!
+              </p>
+            </div>
+          </div>
+
+          {/* Right Side: Kerala Time & Weather Widget */}
+          <div className="flex flex-col items-end bg-black/20 p-4 rounded-2xl border border-white/5">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#8ab4f8]">Kerala, India</span>
+              <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+            </div>
+            <span className="text-3xl font-mono font-bold text-white tabular-nums drop-shadow-md">
+              {keralaTime}
+            </span>
+            <div className="text-[11px] text-white/60 mt-1 font-medium flex items-center gap-1">
+               <span>32°C</span> • <span>Scattered Thunderstorms</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Add your Bento Grid / Main Content below this div */}
+    </div>
+  );
+};
+
+export default CombinedHeader;
+2. Add the "Heartbeat" Animation
+To make the ❤️ actually pulse, make sure this is in your src/index.css:
+
+CSS
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+/* Add this utility class if Tailwind doesn't have it */
+.animate-heartbeat {
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+How to use this:
+Copy-Paste: Use this component at the top of your Dashboard.tsx.
+
+Weather Update: Today in Kerala (March 17), the weather is 32°C with Scattered Thunderstorms. I hard-coded that into the widget for you so it looks real immediately!
+
+Result: Shifa will see her name, a pulsing heart, sparkles, and a live clock showing exactly what time it is for her in India.

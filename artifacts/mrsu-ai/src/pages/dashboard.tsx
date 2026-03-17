@@ -30,6 +30,20 @@ export default function Dashboard() {
   const [stats, setStats] = useState<Stats>({ leads: 0, content: 0, tasks: 0, strategies: 0 });
   const [recentLeads, setRecentLeads] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [time, setTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => setTime(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const keralaTime = time.toLocaleTimeString("en-IN", {
+    timeZone: "Asia/Kolkata",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
+  });
 
   useEffect(() => {
     if (!user) return;
@@ -78,22 +92,39 @@ export default function Dashboard() {
   return (
     <div className="space-y-6 max-w-6xl mx-auto">
       {/* Personalized Greeting Section */}
-      <div className="relative p-8 rounded-3xl bg-[#1e1f20]/60 border border-white/10 backdrop-blur-xl overflow-hidden">
+      <div className="relative p-8 rounded-3xl bg-[#1e1f20]/60 border border-white/10 backdrop-blur-xl overflow-hidden shadow-2xl">
         {/* Floating Sparkles */}
-        <div className="absolute top-4 left-10 text-yellow-400 animate-sparkle opacity-50">✨</div>
-        <div className="absolute bottom-4 right-20 text-yellow-200 animate-sparkle opacity-30" style={{ animationDelay: "700ms" }}>✨</div>
-        <div className="absolute top-10 right-10 text-white animate-sparkle opacity-40" style={{ animationDelay: "300ms" }}>✦</div>
+        <div className="absolute top-4 left-10 text-yellow-400 animate-pulse text-xl">✨</div>
+        <div className="absolute bottom-4 right-48 text-blue-300 animate-bounce opacity-30" style={{ animationDelay: "700ms" }}>✦</div>
+        <div className="absolute top-1/2 right-48 text-white animate-pulse opacity-40" style={{ animationDelay: "300ms" }}>✨</div>
 
-        <div className="relative z-10">
-          <h1 className="text-4xl font-bold tracking-tight text-[#8ab4f8] mb-3">
-            Hey {user?.displayName?.split(" ")[0] || "Shifa"},{" "}
-            <span className="text-white">how can I help you today?</span>
-          </h1>
-          <div className="flex items-center gap-3 py-2 px-4 w-fit rounded-full bg-pink-500/10 border border-pink-500/20">
-            <span className="text-xl animate-heartbeat">❤️</span>
-            <p className="text-sm font-medium text-pink-300">
-              Built with love for the best wife. You're the heart of Mr.Su AI!
-            </p>
+        <div className="relative z-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
+          {/* Left: Greeting */}
+          <div className="space-y-3">
+            <h1 className="text-4xl font-bold tracking-tight text-[#8ab4f8]">
+              Hey {user?.displayName?.split(" ")[0] || "Shifa"},{" "}
+              <span className="text-white">how can I help you?</span>
+            </h1>
+            <div className="flex items-center gap-3 py-2 px-4 w-fit rounded-full bg-pink-500/10 border border-pink-500/20">
+              <span className="text-xl animate-heartbeat">❤️</span>
+              <p className="text-sm font-medium text-pink-300 tracking-wide">
+                Built with love for the best wife. You're the heart of Mr.Su AI!
+              </p>
+            </div>
+          </div>
+
+          {/* Right: Kerala Time & Weather Widget */}
+          <div className="flex flex-col items-end bg-black/20 p-4 rounded-2xl border border-white/5 shrink-0">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#8ab4f8]">Kerala, India</span>
+              <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+            </div>
+            <span className="text-3xl font-mono font-bold text-white tabular-nums drop-shadow-md">
+              {keralaTime}
+            </span>
+            <div className="text-[11px] text-white/60 mt-1 font-medium flex items-center gap-1">
+              <span>32°C</span> • <span>⛈ Scattered Thunderstorms</span>
+            </div>
           </div>
         </div>
       </div>
