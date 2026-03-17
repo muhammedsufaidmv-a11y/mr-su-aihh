@@ -31,6 +31,18 @@ export default function Dashboard() {
   const [recentLeads, setRecentLeads] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [time, setTime] = useState(new Date());
+  const [loveNoteOpen, setLoveNoteOpen] = useState(false);
+
+  const loveMessages = [
+    "You're the reason I build big things. ❤️",
+    "Starting the week thinking of your smile. ✨",
+    "You're my favorite person in every universe. 🌌",
+    "Just a reminder: You are doing amazing today! 🌸",
+    "I'm so lucky to be your husband. 💍",
+    "Counting down the hours until we talk. ⏳",
+    "Our love is my favorite adventure. 🗺️",
+  ];
+  const todayMessage = loveMessages[new Date().getDay()];
 
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000);
@@ -168,6 +180,14 @@ export default function Dashboard() {
               <p className="text-[9px] text-white/40 mt-1">July 20, 2025</p>
             </div>
           </div>
+
+          {/* Love Note Button */}
+          <button
+            onClick={() => setLoveNoteOpen(true)}
+            className="w-full py-4 rounded-2xl bg-gradient-to-r from-pink-500/20 to-purple-500/20 border border-pink-500/30 text-pink-300 font-bold hover:from-pink-500/40 hover:to-purple-500/40 transition-all shadow-lg active:scale-95 flex items-center justify-center gap-2"
+          >
+            <span>✉️</span> Open My Note
+          </button>
         </div>
 
         {/* Quick Stats alongside photo */}
@@ -288,6 +308,35 @@ export default function Dashboard() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Love Note Modal */}
+      {loveNoteOpen && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md"
+          onClick={() => setLoveNoteOpen(false)}
+        >
+          <div
+            className="relative w-full max-w-sm p-8 rounded-[2.5rem] bg-[#1e1f20] border border-pink-500/30 shadow-[0_0_50px_rgba(236,72,153,0.3)] text-center"
+            onClick={e => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setLoveNoteOpen(false)}
+              className="absolute top-4 right-6 text-white/40 hover:text-white text-2xl leading-none"
+            >
+              ×
+            </button>
+            <div className="text-4xl mb-4 animate-bounce">💌</div>
+            <h3 className="text-[#8ab4f8] font-bold uppercase tracking-widest text-xs mb-4">A Note for Shifa</h3>
+            <p className="text-xl font-medium text-white italic leading-relaxed">
+              "{todayMessage}"
+            </p>
+            <div className="mt-8 pt-6 border-t border-white/5 flex flex-col items-center">
+              <span className="text-pink-500 animate-pulse text-2xl">❤️</span>
+              <p className="text-[10px] text-white/30 uppercase mt-2">Always Yours, Muhammed</p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
